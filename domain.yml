@@ -1,0 +1,25 @@
+intents:
+- cumprimentar
+- obter_notas
+- enviar_email_coordenador
+- enviar_email_professor
+- mandar_corpo_email_coordenador
+entities:
+- corpo_email_coordenador
+slots:
+  corpo_email_coordenador:
+    type: text
+templates:
+  utter_cumprimentar:
+  - text: Olá! Me chamo Túlio, em que posso lhe ajudar? Atualmente posso lhe dar suporte
+      em Enviar email para a coordenação. Enviar email para um professor. Calcular
+      média. Data das provas.
+  utter_pega_corpo_email_coordenador:
+  - text: Muito bem. Poderia me falar, resumidamente, qual seria o conteúdo do email?
+  utter_retorna_email_coordenador:
+  - text: '{corpo_email_coordenador} corpo do email ae'
+actions:
+- utter_cumprimentar
+- utter_pega_corpo_email_coordenador
+- utter_retorna_email_coordenador
+- action_pega_corpo_email
