@@ -19,7 +19,6 @@ class ActionMontaResCoordenador(Action):
         res['action'] = 'email'        
         res['contents'] = contents
 
-        print(json.dumps(res))
         return [SlotSet('res_corpo_email', json.dumps(res))]
 
 class ActionMontaResProfessor(Action):
@@ -28,28 +27,28 @@ class ActionMontaResProfessor(Action):
         return "action_monta_res_professor"
 
     def run(self, dispatcher, tracker, domain):
+
         disciplina = tracker.get_slot('disciplina')
+
         ed = ['estrut', 'ED', 'dados', 'eD', 'Ed', 'ed']
         so = ['sistema', 'operaci', 'SO', 'so', 'So', 'sO']
 
         ehED = False
         ehSO = False
 
-        for i in ed:
-            if(i in disciplina):
-                ehEd = True
+        if(disciplina):
+            for i in ed:
+                if(i in disciplina):
+                    ehED = True
+            
+            for i in so:
+                if(i in disciplina):
+                    ehSO = True
         
-        for i in so:
-            if(i in disciplina):
-                ehSO = True
-        
-        if(ehEd):
-            disciplina = 'estrutura_de_dados'
-        
+        if(ehED):
+            disciplina = 'estrutura_de_dados'        
         elif(ehSO):
             disciplina = 'sistemas_operacionais'
-        else:
-            disciplina = None
 
         res      = {}
         contents = {}               
@@ -62,9 +61,9 @@ class ActionMontaResProfessor(Action):
             res['status'] = 1
             res['action'] = ''        
             res['contents'] = contents
-            
+
         else:
-            contents['destiny'] = tracker.get_slot('disciplina')
+            contents['destiny'] = disciplina
             contents['content'] = tracker.latest_message['text']
 
             res['message'] = 'encaminhei o seu email, muito obrigado'
@@ -72,7 +71,6 @@ class ActionMontaResProfessor(Action):
             res['action'] = 'email'        
             res['contents'] = contents
 
-        print(json.dumps(res))
         return [SlotSet('res_corpo_email', json.dumps(res))]
 
 class ActionMediaDisciplina(Action):
@@ -91,7 +89,6 @@ class ActionMediaDisciplina(Action):
         res['action']   = 'media'        
         res['contents'] = contents
 
-        print(json.dumps(res))
         return [SlotSet('disciplina', json.dumps(res))]
 
 class ActionDataProva(Action):
@@ -109,5 +106,4 @@ class ActionDataProva(Action):
         res['action']   = 'data'        
         res['contents'] = contents
 
-        print(json.dumps(res))
         return [SlotSet('data_prova', json.dumps(res))]
