@@ -22,7 +22,7 @@ O bot pode ser acessado pela rota: host:5005/webhooks/rest/webhook com a seguint
 ```
 
 ### Responses
-Todas as respostas do bot seguem o seguinte padrão:
+Todas as respostas do bot seguem o padrão:
 ```python
     {
         "message": "Resposta do bot",
