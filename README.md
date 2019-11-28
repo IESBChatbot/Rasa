@@ -34,3 +34,4 @@ Todas as respostas do bot seguem o padrão:
         }
     }
 ```
+Obs: Os requests com status 1 tão retornando com uma \ no corpo do request, talvez seja necessário dar um replace quando a API receber esses valores
